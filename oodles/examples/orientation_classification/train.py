@@ -13,7 +13,7 @@ from sklearn.linear_model import LogisticRegression
 import joblib
 import pickle
 
-def train_raw(training_file, model_save_name,classical=False):
+def train_raw(training_file, model_save_name,logistic_reg=False):
     print(
         "Training on: ",
         training_file,
@@ -21,7 +21,7 @@ def train_raw(training_file, model_save_name,classical=False):
         len(read_json(training_file)),
         " data-points",
     )
-    if classical==False:
+    if logistic_reg=False:
         training_dataset = KpsDataset(training_file, shuffle=True, augmentations=True)
         model = make_model(input_shape=34)
         model.compile(
@@ -47,8 +47,8 @@ def train_raw(training_file, model_save_name,classical=False):
        
 
 
-def train_model(training_file, model_save_name,classical=False):
-    if classical==False:
+def train_model(training_file, model_save_name,logistic_reg=False):
+    if logistic_reg=False:
         print_training_info = True
         if not print_training_info:
             if not os.path.exists("training_logs"):
@@ -59,6 +59,6 @@ def train_model(training_file, model_save_name,classical=False):
         else:
             train_raw(training_file, model_save_name)
     else:
-        train_raw(training_file,model_save_name,classical)
+        train_raw(training_file,model_save_name,logistic_reg=False)
         
       
